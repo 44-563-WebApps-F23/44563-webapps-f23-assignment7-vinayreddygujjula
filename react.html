@@ -16,10 +16,27 @@
   <button type="button" class="btn btn-primary" onclick="startTime()">Start Timer</button>
   <button type="button" class="btn btn-primary" onclick="recordTime()">React</button>
   <script>
-    let reactTime=undefined;
-    function recordTime(){
-      reactTime=Date.now();
+    let reactTime = undefined;
+    function recordTime() {
+      reactTime = Date.now();
       console.log(reactTime);
+    }
+    function startTime() {
+      for (let i = 0; i < 9; i++) {
+        setTimeout(() => {
+          document.getElementById("counter").innerHTML = i;
+        }, (8 - i) * 1000)
+      }
+      setTimeout(() => {
+        if (reactTime == undefined) {
+          document.getElementById("target").innerHTML = "Too Slow";
+        }
+        else {
+          let endTime = Date.now();
+          let elapsedTime = endTime - reactTime;
+          document.getElementById("target").innerHTML = "Time was " + elapsedTime;
+        }
+      }, 8000)
     }
   </script>
 </body>
